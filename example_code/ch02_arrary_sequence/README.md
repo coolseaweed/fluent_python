@@ -1,5 +1,4 @@
 ## 내장 시퀀스 (Sequence) 개요
----
 ### `컨테이너 시퀀스` vs `균일 시퀀스` (`Container Sequence` vs `Flat Sequence`)
 > 컨테이너 시퀀스: 서로다른 자료형의 항목들을 담을 수 있는 `list`, `tuple`, `collections.deque` 형
 
