@@ -9,3 +9,6 @@
 > 가변 시퀀스: 생성 후 값이 바뀔 수 있는 `list`, `bytearray`, `array.array`, `collections.deque`, `memoryview` 형
 
 > 불변 시퀀스: 생성 후 값이 바뀔 수 없는 `tuple`, `str`, `bytes` 형
+
+## 명명된 튜플 (Named Tuple)
+> `collections.namedtuple()` 함수는 필드명과 클래스명을 추가한 튜플의 서브클래스를 생성하는 팩토리 함수로서, 디버깅할 때 유용하다.
