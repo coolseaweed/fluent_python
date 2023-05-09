@@ -124,3 +124,9 @@ class Vector:
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)  # <7>
 # END VECTOR_V1
+
+
+if __name__ == '__main__':
+    v1 = Vector([3, 4, 5])
+    print(dir(v1))
+    print(help(slice.indices))
