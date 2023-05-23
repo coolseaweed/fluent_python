@@ -57,8 +57,30 @@ def looking_glass():
         original_write(text[::-1])
 
     sys.stdout.write = reverse_write  # <4>
+    print("BEFORE YIELD")
     yield 'JABBERWOCKY'  # <5>
     sys.stdout.write = original_write  # <6>
+    print("END CONTEXT")
 
 
 # END MIRROR_GEN_EX
+if __name__ == "__main__":
+    from mirror_gen import looking_glass
+    with looking_glass() as what:  # <1>
+        print('Alice, Kitty and Snowdrop')  # <2>
+        print(what)
+        print(what)
+
+    print(f"AFTER what: {what}")  # <4>
+    print('Back to normal.')  # <5>
+    print("-------------------------------------")
+
+    from mirror_gen import looking_glass
+    manager = looking_glass()  # <1>
+    print(manager)
+    monster = manager.__enter__()  # <2>
+    print(monster == 'JABBERWOCKY')  # <3>
+    print(manager)
+    manager.__exit__(None, None, None)  # <4>
+    print(monster)
+    print("-------------------------------------")

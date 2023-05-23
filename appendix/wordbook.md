@@ -54,3 +54,7 @@
 - 구스 타이핑 (Goose Typing) - cls가 추상 베이스 클래스인 경우, 즉 cls의 메타클래스가 abc.ABCMeta인 경우에는 isintance(obj, cls)를 써도 좋다는 것을 의미한다.
 
 - 메서드 결정 순서 (Method Resolution Order) - 파이썬이 메서드를 검색할 순서대로 자신과 자신의 슈퍼클래스들을 나열한다.
+
+- EAFP(Easier to Ask for Forgiveness than Permission) - 허락을 구하기보다 용서를 구하는 것이 더 쉽다. 이 말은 예를 들어 올바른 키나 속성이 있다고 가정하고, 그 가정이 잘못되었을 때는 예외를 잡아서 처리하는 파이썬 코딩 스타일을 잘 나타낸다. 깔끔하고 빠른 이 스타일을 적용한 코드에서는 try/except 문을 많이 볼 수 있다. 이 기법은 C 등 다른 언어에서 흔히 볼 수 있는 LBYL 스타일과 대비된다.
+
+- LBYL(Leap Before You Leap) - 누울 자리를 보고 다리를 뻗으라. 이런 코딩스타일은 호출이나 조회를 하기 전에 전제 조건을 명시적으로 검사한다. 이 스타일은 EAFP와 대조적이며, if문을 아주 많이 사용한다는 특징이 있다. 다중 스레드 환경에서 LBYL 스타일은 '보는' 단계와 '뻗는' 단계 사이에 경쟁 조건이 발생할 위험이 있다. 예를 들어 if key in mapping: return mapping[key] 코드는 key를 검사한 후 매핑을 조회하기 전에 다른 스레드에서 key를 제거하면 문제가 발생한다. 이런 문제는 락(lock)을 사용하거나 EAFP 접근법을 이용해서 해결할 수 있다.

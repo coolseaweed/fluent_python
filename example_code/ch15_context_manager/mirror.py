@@ -90,3 +90,32 @@ class LookingGlass:
 
 
 # END MIRROR_EX
+if __name__ == "__main__":
+
+    from mirror import LookingGlass
+    with LookingGlass() as what:  # <1>
+        print('Alice, Kitty and Snowdrop')  # <2>
+        print(what)
+    print(what)  # <4>
+    print('Back to normal.')  # <5>
+    print("-------------------------------------")
+
+    from mirror import LookingGlass
+    manager = LookingGlass()  # <1>
+    print(manager)
+    monster = manager.__enter__()  # <2>
+    print(monster == 'JABBERWOCKY')  # <3>
+    print(manager)
+    manager.__exit__(None, None, None)  # <4>
+    print(monster)
+    print("-------------------------------------")
+
+    from mirror import LookingGlass
+    with LookingGlass():
+        print('Humpty Dumpty')
+        x = 1/0  # <1>
+        print('END')  # <2>
+    with LookingGlass():
+        print('Humpty Dumpty')
+        x = no_such_name  # <1>
+        print('END')  # <2>
