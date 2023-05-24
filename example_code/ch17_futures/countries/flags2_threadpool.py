@@ -36,9 +36,10 @@ def download_many(cc_list, base_url, verbose, concur_req):
         to_do_map = {}  # <7>
         for cc in sorted(cc_list):  # <8>
             future = executor.submit(download_one,
-                            cc, base_url, verbose)  # <9>
+                                     cc, base_url, verbose)  # <9>
             to_do_map[future] = cc  # <10>
         done_iter = futures.as_completed(to_do_map)  # <11>
+        print(done_iter)
         if not verbose:
             done_iter = tqdm.tqdm(done_iter, total=len(cc_list))  # <12>
         for future in done_iter:  # <13>

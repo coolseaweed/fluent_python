@@ -19,8 +19,9 @@ from flags import BASE_URL, save_flag, show, main  # <2>
 
 async def get_flag(cc):  # <3>
     url = '{}/{cc}/{cc}.gif'.format(BASE_URL, cc=cc.lower())
-    resp = await aiohttp.request('GET', url)  # <4>
-    image = await resp.read()  # <5>
+    # resp = await aiohttp.request('GET', url)  # <4>
+    async with aiohttp.request('GET', url) as resp:
+        image = await resp.read()  # <5>
     return image
 
 
@@ -36,7 +37,7 @@ def download_many(cc_list):
     to_do = [download_one(cc) for cc in sorted(cc_list)]  # <9>
     wait_coro = asyncio.wait(to_do)  # <10>
     res, _ = loop.run_until_complete(wait_coro)  # <11>
-    loop.close() # <12>
+    loop.close()  # <12>
 
     return len(res)
 
